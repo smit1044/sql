@@ -1,0 +1,57 @@
+use college;
+select * from student;
+
+select avg(marks)
+from student;
+
+select full_name, marks
+from student
+where marks >90;
+
+select full_name, marks
+from student                                     /*sub queries ex 1*/
+where marks > (select avg(marks) from student);
+
+/*even roll no student name print*/
+select rollno 
+from student
+where rollno % 2 = 0;
+
+select full_name,rollno
+from student
+where rollno in (102 ,104 ,106);
+
+select full_name,rollno
+from student
+where rollno in (select rollno 
+from student                                  /*sub query example 2*/
+where rollno % 2 = 0);
+
+select * 
+from student
+where city = "Delhi";
+
+select max(marks)
+from (select * from student where city = "Delhi") as temp;                     /*sub que in from      ex 3 of sub que*/
+
+select max(marks)
+from (select * from student where city = "Mumbai") as temp;
+
+select max(marks)
+from student
+where city = "Mumbai";
+
+select (select max(marks) from student), full_name
+from student;
+
+/*creating view                     */
+
+create view view1 as
+select rollno,full_name,marks from student;
+
+select * from view1;
+
+select * from view1
+where marks > 90;
+
+drop view view1;
