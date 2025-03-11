@@ -1,0 +1,19 @@
+create database college1;
+use college1;
+ 
+ create table student(
+   rollno INT PRIMARY KEY,
+   name varchar(50)
+ );
+ 
+ select * from student;
+ 
+ INSERT INTO `college1`.`student` (`rollno`, `name`) VALUES ('1', 'ajay');
+INSERT INTO `college1`.`student` (`rollno`, `name`) VALUES ('2', 'karan');
+
+ INSERT INTO student
+ (rollno, name) 
+ VALUES
+ (3 , 'karannaaaaa');
+ 
+  INSERT INTO student VALUES (4, 'ajjjjjjjjjjay');
