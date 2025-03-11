@@ -1,0 +1,19 @@
+create database college;
+use college;
+CREATE TABLE student(
+   id INT PRIMARY KEY,
+   name VARCHAR(50),
+   age INT NOT NULL
+);
+
+INSERT INTO student values(1, "aman",26);
+INSERT INTO student values(2, "chaman",27);
+INSERT INTO student values(3, "gaman",28);
+
+select * from student;
+
+create database if not exists college;
+
+show databases;
+
+SHOW TABLES;
