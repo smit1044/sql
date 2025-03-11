@@ -1,0 +1,112 @@
+create database joins;
+use joins;
+
+create table student(
+id int primary key,
+name varchar(50)
+);
+ insert into student (id,name)
+ values
+ (101 , "adam"),
+ (102 , "bob"),
+ (103,"casey");
+ 
+ create table course(
+ id int primary key,
+ course varchar(50)
+ );
+ 
+ insert into course(id,course)
+ values
+ (102,"english"),
+ (105,"math"),
+ (103,"science"),
+ (107,"coumputer science");
+ 
+ select*from student;
+ select*from course;
+ 
+ /*join*/
+ 
+ select *      
+ from student                                     /*innner join*/
+ inner join course
+ on student.id = course.id;
+ 
+
+  select * 
+ from student as s
+ left join course as c                    /*left join*/
+ on s.id = c.id;
+ 
+
+  select * 
+ from student as s
+ right join course as c                    /*right join*/
+ on s.id = c.id;
+ 
+	
+      select * 
+ from student as s
+ left join course as c                    /*left join*/
+ on s.id = c.id
+ UNION                                      /*full join = left join union right join*/
+   select * 
+ from student as s
+ right join course as c                    /*right join*/
+ on s.id = c.id;
+ 
+ 
+      select * 
+ from student as s
+ left join course as c                    /*left exclusive join*/
+ on s.id = c.id
+ where c.id is null;
+ 
+  select * 
+ from student as s
+ right join course as c                    /*right exclusive join*/
+ on s.id = c.id
+ where s.id is null;
+ 
+      select * 
+ from student as s
+ left join course as c                    /*left exclusive join*/
+ on s.id = c.id
+ where c.id is null
+ union                                   /*left exclusive join intersection right exclusive join*/
+  select * 
+ from student as s
+ right join course as c                    /*right exclusive join*/
+ on s.id = c.id
+ where s.id is null;
+ 
+ /*for self join*/
+ 
+ create table employee(
+id int primary key,
+name varchar(50),
+manager_id int
+);
+ insert into employee (id,name,manager_id)
+ values
+ (101 , "adam",103),
+ (102 , "bob",104),
+ (103,"casey",null),
+  (104 , "donald",103);
+  
+  select*from employee;
+  
+  select a.name as manager_name,b.name
+  from employee as a
+  join employee as b                           /* self join*/
+  on a.id = b.manager_id;
+  
+  
+  select name from employee
+  union                                     /*union */
+  select name from employee;
+  
+   select name from employee
+  union all                                      /*union all */
+  select name from employee;
