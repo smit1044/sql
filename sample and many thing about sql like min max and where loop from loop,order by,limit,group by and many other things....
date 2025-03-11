@@ -1,0 +1,158 @@
+drop database college;
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student (
+    rollno INT PRIMARY KEY,
+    name VARCHAR(50),
+    marks INT NOT NULL,
+    grade VARCHAR(1),
+    city VARCHAR(20)
+);
+
+INSERT INTO student (rollno, name, marks, grade, city) VALUES
+ (101, "anil", 78, "C", "Pune"), 
+ (102, "bhumika", 93, "A", "Mumbai"), 
+(103, "chetan", 85, "B", "Mumbai"), 
+(104, "dhruv", 96, "A", "Delhi"), 
+(105, "emanuel", 12, "F", "Delhi"), 
+(106, "farah", 82, "B", "Delhi");
+
+select name,marks from student;
+
+select * from student;
+
+select city from student;
+
+select distinct city from student; 
+
+select * from student where marks>80;
+select *
+from student
+where marks < 80;
+
+select * from student where city ="Mumbai";
+
+select * from student where city ="Mumbai" AND marks > 80;
+
+select *
+from student
+where marks+10 > 100;
+
+select *
+from student
+where marks = 93;
+
+ select * from student where city ="Mumbai" AND marks > 80;
+ select * from student where city ="Mumbai" OR marks > 80;
+ select * from student where marks Between 80 AND 90;
+ select * from student where city IN ("Mumbai","Delhi") ;
+  select * from student where city NOT IN ("Mumbai","Delhi") ;
+  
+  select *
+from student
+limit 3;
+
+  select *
+from student
+order by city ASC;
+
+  select *
+from student
+order by marks ASC;
+
+  select *
+from student
+order by marks DESC  
+limit 3;
+
+select marks 
+from student;
+
+select MAX(marks)
+from student;
+
+select MIN(marks)
+from student;
+
+select AVG(marks)
+from student;
+
+select COUNT(rollno)
+from student;
+
+SELECT city
+FROM student
+group by city;
+
+SELECT city, count(rollno)
+FROM student
+group by city;
+
+SELECT city,name, count(rollno)
+FROM student
+group by city,name;
+
+SELECT city, avg(marks)
+FROM student
+group by city;
+
+SELECT city, avg(marks)
+FROM student
+group by city
+order by avg(marks) DEsc;
+
+select grade, count(rollno)
+from student
+group by grade
+order by grade;
+
+SELECT city, count(rollno)
+FROM student
+group by city
+HAVING max(marks) > 90;
+
+select city
+from student
+where grade = "A"
+group by city 
+having max(marks) > 90
+order by city asc;
+
+set sql_safe_updates = 0;
+set sql_safe_updates = 1;
+
+update student
+set grade = "O"
+where grade = "A";
+
+select * from student;
+
+update student
+set marks = 70
+where rollno = 105;
+
+set sql_safe_updates = 0;
+
+update student
+set grade = "B"
+where marks between 80 AND 90;
+
+select * from student;
+
+update student
+set marks = marks + 1;
+
+select * from student;
+
+delete from student
+where marks < 33;
+
+update student
+set marks = 32
+where rollno = 105;
+
+delete from student
+where marks < 33;
+
+select * from student;
