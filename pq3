@@ -1,0 +1,11 @@
+use college;
+select * from student;
+
+alter table student
+change name  full_name varchar(50);
+
+delete from student
+where marks< 80;
+
+alter table student
+drop column grade;
